@@ -1,4 +1,4 @@
-# kamstrup-382Lx7
+# kamstrup-382C
 
 This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382C energy meter.
 
