@@ -1,8 +1,14 @@
 # kamstrup-382Lx7
 
-This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382Lx7 energy meter.
+This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382C energy meter.
 
-IR eye used built like https://wiki.hal9k.dk/projects/kamstrup
+Let's try with an IR eye from the volkszäler, since they're available on eBay:
+
+https://wiki.volkszaehler.org/hardware/controllers/ir-schreib-lesekopf-rs232-ausgang
+https://www.ebay.de/itm/354359025520
+
+Shamelessly stolen from https://github.com/bipsendk/kamstrup-382Lx7:
+-----
 
 Code inspired from https://github.com/kquinsland/ws3-to-esphome-bridge - and mostly based on https://github.com/Hal9k-dk/kamstrup/tree/master/Software%20eksempler/kamstrup_powermeter
 
