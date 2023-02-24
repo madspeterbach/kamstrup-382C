@@ -1,6 +1,6 @@
 ##
 #
-# Kamstrup 382Lx7 Meter reader through IR eye from https://wiki.hal9k.dk/projects/kamstrup
+# Kamstrup 382c Meter reader through IR eye from https://wiki.hal9k.dk/projects/kamstrup
 #
 # Code based on https://github.com/Hal9k-dk/kamstrup/tree/master/Software%20eksempler/kamstrup_powermeter
 #
@@ -13,22 +13,22 @@
 # See: https://esphome.io/guides/faq.html#how-do-i-use-my-home-assistant-secrets-yaml
 
 substitutions:
-  device_description: "Measure your energy consumption using an IR eye on a Kamstrup 382Lx7 energy meter"
+  device_description: "Measure your energy consumption using an IR eye on a Kamstrup 382c energy meter"
   
   # WIFI
   wifi_name: !secret wifi_ssid
   wifi_pass: !secret wifi_password
 
   # Displayed in HA frontend
-  friendly_name: "Kamstrup 382Lx7 Energy Meter"
-  friendly_short: "K382Lx7"
+  friendly_name: "Kamstrup 382c Energy Meter"
+  friendly_short: "K382c"
 
 esphome:
-  name: kamstrup-382lx7
+  name: kamstrup-382c
   platform: ESP32
   board: nodemcu-32s
   includes:
-    - k382lx7.h
+    - k382c.h
 
 # Enable Home Assistant API
 api:
@@ -39,7 +39,7 @@ api:
 wifi:
   ssid: ${wifi_name}
   password: ${wifi_pass}
-  domain: '.rg47c.lan'
+  domain: .iot.labs.inder.net
 
 # Enable logging
 logger:
@@ -59,8 +59,8 @@ uart:
   id: uart_bus
   tx_pin: 17
   rx_pin: 16
-  # The Kamstrup 382Lx7 uses 9600 8N1 on the IR serial port
-  baud_rate: 9600
+  # The Kamstrup 382C uses 1200 8N1 on the IR serial port
+  baud_rate: 1200
 
 binary_sensor:
   # A "connected?" status sensor that - as long as sensor + mqtt + HA are working -
@@ -87,28 +87,28 @@ sensor:
   # See: https://esphome.io/custom/custom_component.html
   - platform: custom
     lambda: |-
-      auto k382Lx7 = new K382Lx7(id(uart_bus));
-      App.register_component(k382Lx7);
+      auto k382c = new K382c(id(uart_bus));
+      App.register_component(k382c);
       return {
-        k382Lx7->totEnergyIn_sensor, 
-        k382Lx7->totEnergyOut_sensor, 
-        k382Lx7->EnergyInHiRes_sensor, 
-        k382Lx7->EnergyOutHiRes_sensor, 
-        k382Lx7->CurrentPowerIn_sensor, 
-        k382Lx7->PowerP1In_sensor,
-        k382Lx7->PowerP2In_sensor,
-        k382Lx7->PowerP3In_sensor,
-        k382Lx7->CurrentPowerOut_sensor, 
-        k382Lx7->PowerP1Out_sensor,
-        k382Lx7->PowerP2Out_sensor,
-        k382Lx7->PowerP3Out_sensor,
-        k382Lx7->CurrentP1_sensor, 
-        k382Lx7->CurrentP2_sensor,
-        k382Lx7->CurrentP3_sensor,
-        k382Lx7->MaxPower_sensor,
-        k382Lx7->VoltageP1_sensor, 
-        k382Lx7->VoltageP2_sensor,
-        k382Lx7->VoltageP3_sensor
+        k382c->totEnergyIn_sensor, 
+        k382c->totEnergyOut_sensor, 
+        k382c->EnergyInHiRes_sensor, 
+        k382c->EnergyOutHiRes_sensor, 
+        k382c->CurrentPowerIn_sensor, 
+        k382c->PowerP1In_sensor,
+        k382c->PowerP2In_sensor,
+        k382c->PowerP3In_sensor,
+        k382c->CurrentPowerOut_sensor, 
+        k382c->PowerP1Out_sensor,
+        k382c->PowerP2Out_sensor,
+        k382c->PowerP3Out_sensor,
+        k382c->CurrentP1_sensor, 
+        k382c->CurrentP2_sensor,
+        k382c->CurrentP3_sensor,
+        k382c->MaxPower_sensor,
+        k382c->VoltageP1_sensor, 
+        k382c->VoltageP2_sensor,
+        k382c->VoltageP3_sensor
       };
 
     sensors:

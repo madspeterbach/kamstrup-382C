@@ -2,7 +2,7 @@
 
 //
 //
-// ESPhome custom UART componet for Kamstrup 382Lx7 energy meter
+// ESPhome custom UART componet for Kamstrup 382c energy meter
 // Using the IR Eye from https://wiki.hal9k.dk/projects/kamstrup
 // Code heavily inspired by https://github.com/Hal9k-dk/kamstrup/tree/master/Software%20eksempler/kamstrup_powermeter
 // Arduino code on above link most likely based on the work by Poul-Henning Kamp (https://github.com/bsdphk/PyKamstrup)
@@ -10,7 +10,7 @@
 //
 
 // Log tag
-static const char *TAG = "K382Lx7";
+static const char *TAG = "K382c";
 
 // Set value to 1 if you deliver energy back to the grid, e.g. via Solar Panel
 #define ENERGYOUT 1
@@ -63,11 +63,11 @@ extern float kamReadReg(unsigned short kreg);
 extern void kamSend(byte const *msg, int msgsize);
 extern float kamDecode(unsigned short const kreg, byte const *msg);
 
-class K382Lx7 : public PollingComponent, public UARTDevice
+class K382c : public PollingComponent, public UARTDevice
 {
 
 public:
-  K382Lx7(UARTComponent *parent) : PollingComponent(60000), UARTDevice(parent){};
+  K382c(UARTComponent *parent) : PollingComponent(60000), UARTDevice(parent){};
 
   byte recvmsg[40];  			// buffer of bytes to hold the received data
   byte rxdata[50];  			// buffer to hold received data
