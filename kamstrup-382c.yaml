@@ -11,6 +11,8 @@
 ##
 # Change the values here, or the lookup key in your secrets.yaml file
 # See: https://esphome.io/guides/faq.html#how-do-i-use-my-home-assistant-secrets-yaml
+# Copy secrets.yaml-example to secrets.yaml and edit as needed
+
 
 substitutions:
   device_description: "Measure your energy consumption using an IR eye on a Kamstrup 382c energy meter"
@@ -36,6 +38,8 @@ api:
 
 # See: https://esphome.io/components/wifi.html
 # Domain added in order to ensure correct DNS resolution
+# Copy wifi.yaml-example to wifi.yaml
+
 wifi: !include wifi.yaml
 
 # Enable logging
