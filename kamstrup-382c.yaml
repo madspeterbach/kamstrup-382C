@@ -36,10 +36,7 @@ api:
 
 # See: https://esphome.io/components/wifi.html
 # Domain added in order to ensure correct DNS resolution
-wifi:
-  ssid: ${wifi_name}
-  password: ${wifi_pass}
-  domain: .${lan_domain}
+wifi: !include wifi.yaml
 
 # Enable logging
 logger:
