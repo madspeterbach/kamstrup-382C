@@ -39,7 +39,7 @@ api:
 wifi:
   ssid: ${wifi_name}
   password: ${wifi_pass}
-  domain: .iot.labs.inder.net
+  domain: .${lan_domain}
 
 # Enable logging
 logger:
