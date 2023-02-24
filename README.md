@@ -2,6 +2,8 @@
 
 This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382C energy meter.
 
+So far, not working, unsure if configuration, hw or sw. 
+
 Let's try with an IR eye from the volkszäler, since they're available on eBay:
 
 https://wiki.volkszaehler.org/hardware/controllers/ir-schreib-lesekopf-rs232-ausgang
