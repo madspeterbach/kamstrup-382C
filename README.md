@@ -5,7 +5,7 @@ This is a custom component for ESPhome - to read energy consumption from a Kamst
 My Kamstrup 382C only seems to support basic IEC 1107 mode A at 300 bps, 7e1, see https://github.com/lvzon/dsmr-p1-parser/blob/master/doc/IEC-62056-21-notes.md
 
 After sending the signon sequence "/?!\r\n", my meter responds with:
-
+```
 /KAM 68438BC450000
 0.0.0(14410000)
 1.8.0(0036886*kWh)
@@ -16,7 +16,7 @@ After sending the signon sequence "/?!\r\n", my meter responds with:
 96.8.0(0119899*h)
 0.128.1(0000000)
 1.6.0(1.078*kW)
-
+```
 The /KAM line identifies the manufacturer (Kamstrup). If the device support mode C (changing speed), the character after the KAM sequence would show the speed supported (e.g. 5 for 9600 bps).
 
 The codes are OBIS codes, see https://onemeter.com/docs/device/obis/
