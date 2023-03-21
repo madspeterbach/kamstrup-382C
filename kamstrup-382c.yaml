@@ -2,17 +2,15 @@
 #
 # Kamstrup 382c Meter reader through IR eye from https://wiki.hal9k.dk/projects/kamstrup
 #
-# Code based on https://github.com/Hal9k-dk/kamstrup/tree/master/Software%20eksempler/kamstrup_powermeter
+# Code inspired by https://github.com/bipsendk/kamstrup-382Lx7, but totally rewritten.
 #
 # Free to use for any non-commercial purposes.
 # 
-
 
 ##
 # Change the values here, or the lookup key in your secrets.yaml file
 # See: https://esphome.io/guides/faq.html#how-do-i-use-my-home-assistant-secrets-yaml
 # Copy secrets.yaml-example to secrets.yaml and edit as needed
-
 
 substitutions:
   device_description: "Measure your energy consumption using an IR eye on a Kamstrup 382c energy meter"
@@ -60,8 +58,11 @@ uart:
   id: uart_bus
   tx_pin: 17
   rx_pin: 16
-  # The Kamstrup 382C uses 1200 8N1 on the IR serial port
-  baud_rate: 1200
+  # The Kamstrup 382C uses 300 7E1 on the IR serial port
+  baud_rate: 300
+  data_bits: 7
+  parity: EVEN
+  
 
 binary_sensor:
   # A "connected?" status sensor that - as long as sensor + mqtt + HA are working -
@@ -92,24 +93,7 @@ sensor:
       App.register_component(k382c);
       return {
         k382c->totEnergyIn_sensor, 
-        k382c->totEnergyOut_sensor, 
-        k382c->EnergyInHiRes_sensor, 
-        k382c->EnergyOutHiRes_sensor, 
-        k382c->CurrentPowerIn_sensor, 
-        k382c->PowerP1In_sensor,
-        k382c->PowerP2In_sensor,
-        k382c->PowerP3In_sensor,
-        k382c->CurrentPowerOut_sensor, 
-        k382c->PowerP1Out_sensor,
-        k382c->PowerP2Out_sensor,
-        k382c->PowerP3Out_sensor,
-        k382c->CurrentP1_sensor, 
-        k382c->CurrentP2_sensor,
-        k382c->CurrentP3_sensor,
-        k382c->MaxPower_sensor,
-        k382c->VoltageP1_sensor, 
-        k382c->VoltageP2_sensor,
-        k382c->VoltageP3_sensor
+        k382c->CurrentPowerIn_sensor
       };
 
     sensors:
@@ -118,78 +102,7 @@ sensor:
         device_class: energy
         accuracy_decimals: 2
         state_class: total_increasing
-      - name: "${friendly_short} Total Energy Out"
-        unit_of_measurement: "kWh"
-        device_class: energy
-        accuracy_decimals: 2
-        state_class: total_increasing
-      - name: "${friendly_short} Energy In HiRes"
-        unit_of_measurement: "kWh"
-        accuracy_decimals: 3
-        device_class: energy
-        state_class: total_increasing
-      - name: "${friendly_short} Energy Out HiRes"
-        unit_of_measurement: "kWh"
-        accuracy_decimals: 3
-        device_class: energy
-        state_class: total_increasing
       - name: "${friendly_short} Current Power In"
         unit_of_measurement: "kW"
         accuracy_decimals: 2
         device_class: power
-      - name: "${friendly_short} Power P1 In"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Power P2 In"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Power P3 In"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Current Power Out"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Power P1 Out"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Power P2 Out"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Power P3 Out"
-        unit_of_measurement: "kW"
-        accuracy_decimals: 2
-        device_class: power
-      - name: "${friendly_short} Current P1"
-        unit_of_measurement: "A"
-        accuracy_decimals: 2
-        device_class: current
-      - name: "${friendly_short} Current P2"
-        unit_of_measurement: "A"
-        accuracy_decimals: 2
-        device_class: current
-      - name: "${friendly_short} Current P3"
-        unit_of_measurement: "A"
-        accuracy_decimals: 2
-        device_class: current
-      - name: "${friendly_short} Max Power"
-        unit_of_measurement: "kWh"
-        accuracy_decimals: 2
-        device_class: energy
-      - name: "${friendly_short} Voltage P1"
-        unit_of_measurement: "V"
-        device_class: voltage
-        accuracy_decimals: 2
-      - name: "${friendly_short} Voltage P2"
-        unit_of_measurement: "V"
-        accuracy_decimals: 2
-        device_class: voltage
-      - name: "${friendly_short} Voltage P3"
-        unit_of_measurement: "V"
-        accuracy_decimals: 2
-        device_class: voltage 
