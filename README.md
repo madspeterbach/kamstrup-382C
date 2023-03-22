@@ -1,6 +1,6 @@
 # kamstrup-382C
 
-This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382C energy meter.
+This is a custom component for ESPhome - to read energy consumption from a Kamstrup 382C energy meter. Since it's targeted at using basic IEC 1107 mode A, it could work for other energy meters.
 
 My Kamstrup 382C only seems to support basic IEC 1107 mode A at 300 bps, 7e1, see https://github.com/lvzon/dsmr-p1-parser/blob/master/doc/IEC-62056-21-notes.md
 
